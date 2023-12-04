@@ -28,7 +28,7 @@ def neighbors_fn(
 
     @cache
     def neighbors(point: Point) -> Iterator[Point]:
-        for (dx, dy) in directions:
+        for dx, dy in directions:
             x, y = point
             nx = x + dx
             ny = y + dy
@@ -43,6 +43,7 @@ GridCell = str | int | float
 Grid = list[list[str | int | float]]
 PointIndex = dict[Point, str | int | float]
 ValueIndex = dict[str | int | float, list[Point]]
+
 
 # TODO cast function
 # TODO splitter function
@@ -113,8 +114,8 @@ def get_input(day: int) -> str:
     Path("data").mkdir(exist_ok=True)
     f = Path(f"data/day_{day:02}.txt")
     if f.exists():
-        return f.read_text(encoding='utf-8')
-    session: str = Path(".session").read_text(encoding='utf-8').strip()
+        return f.read_text(encoding="utf-8")
+    session: str = Path(".session").read_text(encoding="utf-8").strip()
     response = requests.get(
         f"https://adventofcode.com/{YEAR}/day/{day}/input",
         cookies={"session": session},

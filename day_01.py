@@ -20,7 +20,8 @@ def find_all(s: str, sub: str) -> Iterator[int]:
     start = 0
     while True:
         start = s.find(sub, start)
-        if start == -1: return
+        if start == -1:
+            return
         yield start
         start += 1
 
@@ -28,16 +29,16 @@ def find_all(s: str, sub: str) -> Iterator[int]:
 def solve_two(data: str) -> Any:
     # replace with word to account for overlapping word digits
     mapping = {
-        "zero": 'zero0zero',
-        "one": 'one1one',
-        "two": 'two2two',
-        "three": 'three3three',
-        "four": 'four4four',
-        "five": 'five5five',
-        "six": 'six6six',
-        "seven": 'seven7seven',
-        "eight": 'eight8eight',
-        "nine": 'nine9nine'
+        "zero": "zero0zero",
+        "one": "one1one",
+        "two": "two2two",
+        "three": "three3three",
+        "four": "four4four",
+        "five": "five5five",
+        "six": "six6six",
+        "seven": "seven7seven",
+        "eight": "eight8eight",
+        "nine": "nine9nine",
     }
 
     s = 0
