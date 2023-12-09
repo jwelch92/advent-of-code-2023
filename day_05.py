@@ -10,6 +10,7 @@ from typing import Any
 
 DAY = 5
 
+
 def lookup(v, maps):
     val = v
     for m in maps:
@@ -18,6 +19,7 @@ def lookup(v, maps):
         )
     return val
 
+
 def reverse_lookup(v, maps):
     val = v
     for m in reversed(maps):
@@ -25,6 +27,7 @@ def reverse_lookup(v, maps):
             (sr.start + (val - dr.start) for sr, dr in m.items() if val in dr), val
         )
     return val
+
 
 def solve_one(data: str) -> Any:
     data = """seeds: 79 14 55 13
@@ -74,10 +77,9 @@ humidity-to-location map:
         print(mappings)
         for s in mappings:
             dest, src, length = map(int, s.split(" "))
-            y[range(src, src+length)] = range(dest, dest+length)
+            y[range(src, src + length)] = range(dest, dest + length)
         t.append(y)
     pprint(t)
-
 
     locs = [lookup(x, t) for x in seeds]
     print(locs)
@@ -86,41 +88,40 @@ humidity-to-location map:
     return ans
 
 
-
 def solve_two(data: str) -> Any:
-#     data = """seeds: 79 14 55 13
-#
-# seed-to-soil map:
-# 50 98 2
-# 52 50 48
-#
-# soil-to-fertilizer map:
-# 0 15 37
-# 37 52 2
-# 39 0 15
-#
-# fertilizer-to-water map:
-# 49 53 8
-# 0 11 42
-# 42 0 7
-# 57 7 4
-#
-# water-to-light map:
-# 88 18 7
-# 18 25 70
-#
-# light-to-temperature map:
-# 45 77 23
-# 81 45 19
-# 68 64 13
-#
-# temperature-to-humidity map:
-# 0 69 1
-# 1 0 69
-#
-# humidity-to-location map:
-# 60 56 37
-# 56 93 4"""
+    #     data = """seeds: 79 14 55 13
+    #
+    # seed-to-soil map:
+    # 50 98 2
+    # 52 50 48
+    #
+    # soil-to-fertilizer map:
+    # 0 15 37
+    # 37 52 2
+    # 39 0 15
+    #
+    # fertilizer-to-water map:
+    # 49 53 8
+    # 0 11 42
+    # 42 0 7
+    # 57 7 4
+    #
+    # water-to-light map:
+    # 88 18 7
+    # 18 25 70
+    #
+    # light-to-temperature map:
+    # 45 77 23
+    # 81 45 19
+    # 68 64 13
+    #
+    # temperature-to-humidity map:
+    # 0 69 1
+    # 1 0 69
+    #
+    # humidity-to-location map:
+    # 60 56 37
+    # 56 93 4"""
 
     seeds, *maps = data.split("\n\n")
     print(seeds)
@@ -135,15 +136,14 @@ def solve_two(data: str) -> Any:
         print(mappings)
         for s in mappings:
             dest, src, length = map(int, s.split(" "))
-            y[range(src, src+length)] = range(dest, dest+length)
+            y[range(src, src + length)] = range(dest, dest + length)
         t.append(y)
     pprint(t)
-
 
     seed_ranges = []
     for se in chunks(seeds, 2):
         start, ln = se
-        seed_ranges.append(range(start, start+ln))
+        seed_ranges.append(range(start, start + ln))
 
     # this is way too slow and takes too long to bruteforce. Interesting approximation technique used here: https://github.com/mmdoogie/adventofcode2023/blob/main/aoc_2023_05.py
     loc = 0

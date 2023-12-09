@@ -22,7 +22,8 @@ Point = tuple[int, int]
 def chunks(lst, n):
     """Yield successive n-sized chunks from lst."""
     for i in range(0, len(lst), n):
-        yield lst[i:i + n]
+        yield lst[i : i + n]
+
 
 def neighbors_fn(
     width: int, height: int, diag: bool = False
@@ -102,6 +103,7 @@ def days_since_dec1():
 
 class timer:
     """from https://stackoverflow.com/a/69156219"""
+
     def __init__(self, quiet: bool = False):
         self.quiet = quiet
 

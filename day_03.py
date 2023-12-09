@@ -52,22 +52,22 @@ def solve_one(data: str) -> Any:
     #             if part_no:
     #                 total += int(t)
 
-
     # assert total == 4361, f"Total is {total}"
     # return total
     pass
 
+
 def solve_two(data: str) -> Any:
-#     data = """467..114..
-# ...*......
-# ..35..633.
-# ......#...
-# 617*.......
-# .....+.58.
-# ..592.....
-# ......755.
-# ...$.*....
-# .664.598.."""
+    #     data = """467..114..
+    # ...*......
+    # ..35..633.
+    # ......#...
+    # 617*.......
+    # .....+.58.
+    # ..592.....
+    # ......755.
+    # ...$.*....
+    # .664.598.."""
 
     g, h, w, points, values = build_grid(data, split_fn=lambda x: list(x))
     print(g[0])
@@ -80,8 +80,8 @@ def solve_two(data: str) -> Any:
     for line_idx, line in enumerate(g):
         for col_idx, col in enumerate(line):
             if (
-                    points[col_idx, line_idx] in nums
-                    and not points.get((col_idx - 1, line_idx), ".") in nums
+                points[col_idx, line_idx] in nums
+                and not points.get((col_idx - 1, line_idx), ".") in nums
             ):
                 x2 = col_idx
                 t = ""
@@ -90,7 +90,9 @@ def solve_two(data: str) -> Any:
                     t += points[x2, line_idx]
                     for nx, ny in nfn((x2, line_idx)):
                         checking = points[nx, ny]
-                        print(f"checking ({nx}, {ny}) = {checking} from ({x2, line_idx}) = {points[x2, line_idx]}")
+                        print(
+                            f"checking ({nx}, {ny}) = {checking} from ({x2, line_idx}) = {points[x2, line_idx]}"
+                        )
                         if checking == "*":
                             gear = (nx, ny)
 

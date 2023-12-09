@@ -19,7 +19,7 @@ Distance:  9  40  200"""
 
     print(times, distances)
     total = 1
-    for (time, distance) in zip(times, distances):
+    for time, distance in zip(times, distances):
         ways = 0
         print(time, distance)
         # each ms held increases speed by 1 mm
@@ -34,15 +34,9 @@ Distance:  9  40  200"""
     return total
 
 
-
-
-
-
-
-
 def solve_two(data: str) -> Any:
-#     data = """Time:      7  15   30
-# Distance:  9  40  200"""
+    #     data = """Time:      7  15   30
+    # Distance:  9  40  200"""
     time_line, distance_line = data.splitlines()
     time = int("".join(re.findall(r"\d+", time_line)))
     distance = int("".join(re.findall(r"\d+", distance_line)))
@@ -55,7 +49,6 @@ def solve_two(data: str) -> Any:
             total += 1
     print(total)
     assert total == 71503
-
 
 
 def main(quiet: bool = False) -> None:
