@@ -19,6 +19,11 @@ YEAR = 2023
 Point = tuple[int, int]
 
 
+def chunks(lst, n):
+    """Yield successive n-sized chunks from lst."""
+    for i in range(0, len(lst), n):
+        yield lst[i:i + n]
+
 def neighbors_fn(
     width: int, height: int, diag: bool = False
 ) -> Callable[[Point], Iterator[Point]]:
@@ -97,16 +102,20 @@ def days_since_dec1():
 
 class timer:
     """from https://stackoverflow.com/a/69156219"""
+    def __init__(self, quiet: bool = False):
+        self.quiet = quiet
 
     def __enter__(self):
         self.time = perf_counter()
+
         return self
 
     def __exit__(self, type, value, traceback):
         self.time = perf_counter() - self.time
         ms = self.time * 1000
         self.readout = f"{'':<4}Time: {ms:2f} ms"
-        print(self.readout)
+        if not self.quiet:
+            print(self.readout)
 
 
 def get_input(day: int) -> str:
@@ -151,7 +160,7 @@ def run(day: int, part: int, solver: Callable[[str], Any], quiet: bool = False) 
     data = get_input(day)
     if not quiet:
         console.print(f"=== RUNNING DAY {day} PART {part} ===", style="bold")
-    with timer():
+    with timer(quiet):
         solution = solver(data)
     if not quiet:
         console.print(f"{'':<6}ANSWER: [green]{solution}")
